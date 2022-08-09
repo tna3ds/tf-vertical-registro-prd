@@ -19,4 +19,4 @@ terraform apply -auto-approve -var-file="config/prod.tfvars"
 ```
 
 ## License
-[DAVIPLATA](https://daviplata.com/)
+HQUINTERO
