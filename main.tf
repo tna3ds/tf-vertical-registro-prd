@@ -129,6 +129,7 @@ module "cognito" {
   project     = var.project
   manager     = var.manager
   dns         = var.dns
+  cognito_callback_urls_name = var.cognito_callback_urls_name
 
   source = "./modules/cognito"
 }

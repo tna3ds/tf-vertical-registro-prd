@@ -70,6 +70,12 @@ variable "dns" {
   default     = ""
 }
 
+variable "cognito_callback_urls_name" {
+  description = "cognito callback name"
+  type        = string
+  default     = ""
+}
+
 variable "ecs_task_role_policies_name" {
   description = "List arn policies for ecs taks"
   type        = list(string)

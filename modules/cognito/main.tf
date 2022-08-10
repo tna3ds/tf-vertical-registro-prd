@@ -56,7 +56,7 @@ resource "aws_cognito_user_pool_client" "registro-app-client" {
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_scopes                 = aws_cognito_resource_server.scope-daviplata.scope_identifiers
   allowed_oauth_flows                  = ["client_credentials"]
-  callback_urls                        = ["https://${var.dns}/persistence/v1/data/registrowse/5539e140-f700-11ec-a825-e94c66d7a6ca"]
+  callback_urls                        = ["https://${var.dns}/${var.cognito_callback_urls_name}"]
 
   read_attributes = [
     "address",

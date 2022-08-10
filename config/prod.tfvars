@@ -1,10 +1,11 @@
 #PROJECT DETAILS
-aws_region         = "us-east-2"
-environment        = "prd"
-project            = "cn"
-manager            = "Terraform"
-s3_cloudfront_name = "registro"
-dns                = "prod.cn.api.daviplata.com"
+aws_region                 = "us-east-2"
+environment                = "prd"
+project                    = "cn"
+manager                    = "Terraform"
+s3_cloudfront_name         = "registro"
+dns                        = "prod.cn.api.daviplata.com"
+cognito_callback_urls_name = "persistence/v1/data/registrowse/5539e140-f700-11ec-a825-e94c66d7a6ca"
 
 #VPC-SUBNETS
 vpc_id = "vpc-09ca485f0eb46cc98"

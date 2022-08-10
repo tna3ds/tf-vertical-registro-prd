@@ -21,3 +21,9 @@ variable "dns" {
   type        = string
   default     = ""
 }
+
+variable "cognito_callback_urls_name" {
+  description = "cognito callback name"
+  type        = string
+  default     = ""
+}
