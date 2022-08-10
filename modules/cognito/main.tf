@@ -34,6 +34,10 @@ resource "aws_cognito_user_pool" "cognito-pool" {
       priority = 1
     }
   }
+
+  tags = {
+    "Manager" = var.manager
+  }
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -103,6 +107,10 @@ resource "aws_cognito_user_pool_client" "registro-app-client" {
     id_token      = "minutes"
     refresh_token = "days"
   }
+
+  depends_on = [
+    aws_cognito_resource_server.scope-daviplata
+  ]
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -123,6 +131,10 @@ resource "aws_cognito_resource_server" "scope-daviplata" {
   }
 
   user_pool_id = aws_cognito_user_pool.cognito-pool.id
+
+  depends_on = [
+    aws_cognito_user_pool.cognito-pool
+  ]
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -132,4 +144,8 @@ resource "aws_cognito_resource_server" "scope-daviplata" {
 resource "aws_cognito_user_pool_domain" "pool-domain" {
   domain       = "${var.environment}-${var.project}-daviplata"
   user_pool_id = "${aws_cognito_user_pool.cognito-pool.id}"
+
+  depends_on = [
+    aws_cognito_resource_server.scope-daviplata
+  ]
 }
