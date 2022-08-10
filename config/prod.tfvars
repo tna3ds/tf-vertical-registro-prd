@@ -4,6 +4,7 @@ environment        = "prd"
 project            = "cn"
 manager            = "Terraform"
 s3_cloudfront_name = "registro"
+dns                = "prod.cn.api.daviplata.com"
 
 #VPC-SUBNETS
 vpc_id = "vpc-09ca485f0eb46cc98"

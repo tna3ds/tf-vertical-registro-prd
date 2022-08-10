@@ -64,6 +64,12 @@ variable "s3_cloudfront_name" {
   default     = ""
 }
 
+variable "dns" {
+  description = "DNS name"
+  type        = string
+  default     = ""
+}
+
 variable "ecs_task_role_policies_name" {
   description = "List arn policies for ecs taks"
   type        = list(string)

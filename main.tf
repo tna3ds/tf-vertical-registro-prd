@@ -19,7 +19,7 @@ provider "aws" {
   region = var.aws_region
 }
 
-module "network" {
+/*module "network" {
   vpc_id          = var.vpc_id
   environment     = var.environment
   project         = var.project
@@ -122,4 +122,13 @@ module "redis-cluste" {
   redis_engine_logs_name = module.cloud-watch.redis_engine_logs_name
 
   source = "./modules/redis_cluster"
+}*/
+
+module "cognito" {
+  environment = var.environment
+  project     = var.project
+  manager     = var.manager
+  dns         = var.dns
+
+  source = "./modules/cognito"
 }
