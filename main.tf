@@ -50,7 +50,7 @@ module "load-balancer" {
 
   source = "./modules/load_balancer"
 }
-/*
+
 module "iam" {
   manager                                  = var.manager
   repositories                             = var.repositories
@@ -123,7 +123,7 @@ module "redis-cluste" {
 
   source = "./modules/redis_cluster"
 }
-*/
+
 module "cognito" {
   environment                = var.environment
   project                    = var.project
