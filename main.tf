@@ -19,7 +19,7 @@ provider "aws" {
   region = var.aws_region
 }
 
-/*module "network" {
+module "network" {
   vpc_id          = var.vpc_id
   environment     = var.environment
   project         = var.project
@@ -50,7 +50,7 @@ module "load-balancer" {
 
   source = "./modules/load_balancer"
 }
-
+/*
 module "iam" {
   manager                                  = var.manager
   repositories                             = var.repositories
@@ -122,14 +122,29 @@ module "redis-cluste" {
   redis_engine_logs_name = module.cloud-watch.redis_engine_logs_name
 
   source = "./modules/redis_cluster"
-}*/
-
+}
+*/
 module "cognito" {
-  environment = var.environment
-  project     = var.project
-  manager     = var.manager
-  dns         = var.dns
+  environment                = var.environment
+  project                    = var.project
+  manager                    = var.manager
+  dns                        = var.dns
   cognito_callback_urls_name = var.cognito_callback_urls_name
 
   source = "./modules/cognito"
+}
+
+module "api_gateway" {
+  environment                    = var.environment
+  project                        = var.project
+  manager                        = var.manager
+  dns                            = var.dns
+  alb_priv_name                  = module.load-balancer.alb_priv_name
+  cognito_user_pool_endpoint     = module.cognito.cognito_user_pool_endpoint
+  cognito_user_pool_autorizer_id = module.cognito.cognito_user_pool_autorizer_id
+  private_subnets_id             = module.network.private_subnets_id
+  sg_alb_id                      = module.security.sg_alb_id
+  lister_alb_priv_arn            = module.load-balancer.lister_alb_priv_arn
+
+  source = "./modules/api_gateway"
 }
