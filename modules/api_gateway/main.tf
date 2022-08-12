@@ -299,6 +299,11 @@ resource "aws_apigatewayv2_stage" "registro_stage" {
   name        = var.environment
   auto_deploy = true
 
+  access_log_settings {
+    destination_arn = var.api_gateway_logs_arn
+    format          = "$context.identity.sourceIp - - [$context.requestTime] \"$context.httpMethod $context.routeKey $context.protocol\" $context.status $context.responseLength $context.requestId $context.integrationErrorMessage"
+  }
+
   tags = {
     "Manager" = var.manager
   }

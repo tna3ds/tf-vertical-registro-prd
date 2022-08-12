@@ -19,7 +19,7 @@ resource "aws_elasticache_subnet_group" "redis_subnet_group" {
 resource "aws_elasticache_replication_group" "redis_replica_group" {
   replication_group_id = lower("redis-cluster-${var.project}-${var.environment}")
   description          = lower("Redis cluster for ${var.project} ${var.environment}")
-  node_type            = "cache.t2.micro"
+  node_type            = "cache.t4g.medium"
 
   port                       = 6379
   engine_version             = "6.2"
@@ -29,6 +29,7 @@ resource "aws_elasticache_replication_group" "redis_replica_group" {
   at_rest_encryption_enabled = true
   transit_encryption_enabled = true
   apply_immediately          = true
+  multi_az_enabled           = true
 
   security_group_ids = [var.sg_redis_id]
 

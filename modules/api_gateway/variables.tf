@@ -54,6 +54,12 @@ variable "private_subnets_id" {
 
 variable "lister_alb_priv_arn" {
   description = "The arn of lister alb priv"
-  type       = string
+  type        = string
+  default     = ""
+}
+
+variable "api_gateway_logs_arn" {
+  description = "The name of cloudwatch logs for api gateway"
+  type        = string
   default     = ""
 }

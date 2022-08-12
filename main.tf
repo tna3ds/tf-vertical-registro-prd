@@ -145,6 +145,7 @@ module "api_gateway" {
   private_subnets_id             = module.network.private_subnets_id
   sg_alb_id                      = module.security.sg_alb_id
   lister_alb_priv_arn            = module.load-balancer.lister_alb_priv_arn
+  api_gateway_logs_arn           = module.cloud-watch.api_gateway_logs_arn
 
   source = "./modules/api_gateway"
 }
