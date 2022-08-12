@@ -12,6 +12,8 @@ terraform {
   required_version = ">= 1.0.0"
   backend "s3" {
     // Before apply please check the backend config file
+    key            = "tfstate"
+    dynamodb_table = "terraform-lock"
   }
 }
 
@@ -41,7 +43,7 @@ module "security" {
   source = "./modules/security"
 }
 
-module "load-balancer" {
+module "load_balancer" {
   environment        = var.environment
   project            = var.project
   private_subnets_id = module.network.private_subnets_id
@@ -54,7 +56,7 @@ module "load-balancer" {
 module "iam" {
   manager                                  = var.manager
   repositories                             = var.repositories
-  ecs_task_role_policies_name              = var.ecs_task_role_policies_name
+  ecs_task_execution_role_policies_name    = var.ecs_task_execution_role_policies_name
   ecs_task_auth_policies_name              = var.ecs_task_auth_policies_name
   ecs_task_catalogo_policies_name          = var.ecs_task_catalogo_policies_name
   ecs_task_persistence_policies_name       = var.ecs_task_persistence_policies_name
@@ -72,7 +74,7 @@ module "ecs_ecr" {
   source = "./modules/ecs_ecr"
 }
 
-module "secrets-manger" {
+module "secrets_manger" {
   manager = var.manager
 
   source = "./modules/secrets_manager"
@@ -139,19 +141,13 @@ module "api_gateway" {
   project                        = var.project
   manager                        = var.manager
   dns                            = var.dns
-  alb_priv_name                  = module.load-balancer.alb_priv_name
+  alb_priv_name                  = module.load_balancer.alb_priv_name
   cognito_user_pool_endpoint     = module.cognito.cognito_user_pool_endpoint
   cognito_user_pool_autorizer_id = module.cognito.cognito_user_pool_autorizer_id
   private_subnets_id             = module.network.private_subnets_id
   sg_alb_id                      = module.security.sg_alb_id
-  lister_alb_priv_arn            = module.load-balancer.lister_alb_priv_arn
+  lister_alb_priv_arn            = module.load_balancer.lister_alb_priv_arn
   api_gateway_logs_arn           = module.cloud-watch.api_gateway_logs_arn
 
   source = "./modules/api_gateway"
-}
-
-module "ecr-images" {
-  region = var.region
-
-  source = "./modules/ecr_images"
 }

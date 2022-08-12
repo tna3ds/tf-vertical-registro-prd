@@ -125,10 +125,6 @@ resource "aws_cognito_resource_server" "scope_daviplata" {
     scope_name        = "daviplata"
     scope_description = "scope Daviplata Oauth2"
   }
-  scope {
-    scope_name        = "persistence"
-    scope_description = "scope persistence Oauth2"
-  }
 
   user_pool_id = aws_cognito_user_pool.cognito_pool.id
 

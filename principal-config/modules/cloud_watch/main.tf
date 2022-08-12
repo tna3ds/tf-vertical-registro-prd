@@ -3,7 +3,7 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 resource "aws_cloudwatch_log_group" "redis_slow_logs" {
-  name              = lower("/redis-${var.project}-${var.environment}/slow-logs")
+  name = lower("/redis-${var.project}-${var.environment}/slow-logs")
   retention_in_days = 14
 
   tags = {
@@ -16,7 +16,7 @@ resource "aws_cloudwatch_log_group" "redis_slow_logs" {
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 resource "aws_cloudwatch_log_group" "redis_engine_logs" {
-  name              = lower("/redis-${var.project}-${var.environment}/engine-logs")
+  name = lower("/redis-${var.project}-${var.environment}/engine-logs")
   retention_in_days = 14
 
   tags = {

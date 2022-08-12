@@ -29,8 +29,6 @@ resource "aws_elasticache_replication_group" "redis_replica_group" {
   at_rest_encryption_enabled = true
   transit_encryption_enabled = true
   apply_immediately          = true
-  #multi_az_enabled           = true
-  #automatic_failover_enabled = true
 
   security_group_ids = [var.sg_redis_id]
 

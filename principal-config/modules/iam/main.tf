@@ -3,8 +3,8 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 data "aws_iam_policy" "ecs_task_policy_data" {
-  count = length(var.ecs_task_role_policies_name)
-  name  = var.ecs_task_role_policies_name[count.index]
+  count = length(var.ecs_task_execution_role_policies_name)
+  name  = var.ecs_task_execution_role_policies_name[count.index]
 }
 
 resource "aws_iam_role" "ecs_task_role" {
@@ -30,7 +30,7 @@ EOF
 }
 resource "aws_iam_role_policy_attachment" "ecs_task_role_policy_attach" {
   role       = aws_iam_role.ecs_task_role.name
-  count      = length(var.ecs_task_role_policies_name)
+  count      = length(var.ecs_task_execution_role_policies_name)
   policy_arn = element(data.aws_iam_policy.ecs_task_policy_data.*.id, count.index)
 }
 
