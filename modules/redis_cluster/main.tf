@@ -23,13 +23,14 @@ resource "aws_elasticache_replication_group" "redis_replica_group" {
 
   port                       = 6379
   engine_version             = "6.2"
-  num_node_groups            = 1
+  num_node_groups            = 2
   parameter_group_name       = "default.redis6.x"
   subnet_group_name          = aws_elasticache_subnet_group.redis_subnet_group.name
   at_rest_encryption_enabled = true
   transit_encryption_enabled = true
   apply_immediately          = true
   multi_az_enabled           = true
+  automatic_failover_enabled = true
 
   security_group_ids = [var.sg_redis_id]
 
