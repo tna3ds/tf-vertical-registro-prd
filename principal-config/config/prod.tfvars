@@ -37,7 +37,7 @@ repositories = [
 ]
 
 #IAM-ROLES-POLICIES
-ecs_task_role_policies_name = [
+ecs_task_execution_role_policies_name = [
   "SecretsManagerReadWrite",
   "AmazonElastiCacheFullAccess",
   "AmazonDynamoDBFullAccess",
