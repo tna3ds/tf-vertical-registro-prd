@@ -5,7 +5,7 @@
 resource "aws_internet_gateway" "igw" {
   vpc_id = var.vpc_id
   tags = {
-    "Name" = upper("igw-${var.project}-${var.environment}")
+    "Name"    = upper("igw-${var.project}-${var.environment}")
     "Manager" = var.manager
   }
 }
@@ -21,7 +21,7 @@ resource "aws_route_table" "rtb_pub" {
     gateway_id = aws_internet_gateway.igw.id
   }
   tags = {
-    "Name" = upper("rtb-pub-${var.project}-${var.environment}")
+    "Name"    = upper("rtb-pub-${var.project}-${var.environment}")
     "Manager" = var.manager
   }
 }
@@ -41,7 +41,7 @@ resource "aws_subnet" "public_subnets" {
   availability_zone       = var.azs[count.index]
   map_public_ip_on_launch = true
   tags = {
-    Name = upper("subnet-pub-${var.project}-${var.environment}-${var.azs_name[count.index]}")
+    Name      = upper("subnet-pub-${var.project}-${var.environment}-${var.azs_name[count.index]}")
     "Manager" = var.manager
   }
 }
@@ -59,7 +59,7 @@ resource "aws_eip" "ipnat" {
   count = length(var.public_subnets)
   vpc   = true
   tags = {
-    Name = upper("eip-${var.project}-${var.environment}-${var.azs_name[count.index]}")
+    Name      = upper("eip-${var.project}-${var.environment}-${var.azs_name[count.index]}")
     "Manager" = var.manager
   }
 }
@@ -68,7 +68,7 @@ resource "aws_nat_gateway" "natw" {
   allocation_id = element(aws_eip.ipnat.*.id, count.index)
   subnet_id     = element(aws_subnet.public_subnets.*.id, count.index)
   tags = {
-    Name = upper("nat-${var.project}-${var.environment}-${var.azs_name[count.index]}")
+    Name      = upper("nat-${var.project}-${var.environment}-${var.azs_name[count.index]}")
     "Manager" = var.manager
   }
 }
@@ -81,11 +81,11 @@ resource "aws_route_table" "rtb_prv" {
   count  = length(var.private_subnets)
   vpc_id = var.vpc_id
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block     = "0.0.0.0/0"
     nat_gateway_id = element(aws_nat_gateway.natw.*.id, count.index)
   }
   tags = {
-    "Name" = upper("rtb-prv-${var.project}-${var.environment}-${var.azs_name[count.index]}")
+    "Name"    = upper("rtb-prv-${var.project}-${var.environment}-${var.azs_name[count.index]}")
     "Manager" = var.manager
   }
 }
@@ -101,7 +101,7 @@ resource "aws_subnet" "private_subnets" {
   availability_zone       = var.azs[count.index]
   map_public_ip_on_launch = false
   tags = {
-    Name = upper("subnet-prv-${var.project}-${var.environment}-${var.azs_name[count.index]}")
+    Name      = upper("subnet-prv-${var.project}-${var.environment}-${var.azs_name[count.index]}")
     "Manager" = var.manager
   }
 }

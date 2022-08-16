@@ -43,5 +43,5 @@ variable "azs" {
 variable "azs_name" {
   description = "List names of availability zones in the region"
   type        = list(string)
-  default     = []  
+  default     = []
 }

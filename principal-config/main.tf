@@ -52,7 +52,7 @@ module "load_balancer" {
 
   source = "./modules/load_balancer"
 }
-
+*/
 module "iam" {
   manager                                  = var.manager
   repositories                             = var.repositories

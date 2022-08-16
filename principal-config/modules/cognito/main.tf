@@ -139,7 +139,7 @@ resource "aws_cognito_resource_server" "scope_daviplata" {
 
 resource "aws_cognito_user_pool_domain" "pool_domain" {
   domain       = "${var.environment}-${var.project}-daviplata"
-  user_pool_id = "${aws_cognito_user_pool.cognito_pool.id}"
+  user_pool_id = aws_cognito_user_pool.cognito_pool.id
 
   depends_on = [
     aws_cognito_resource_server.scope_daviplata

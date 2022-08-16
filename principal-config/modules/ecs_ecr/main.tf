@@ -23,7 +23,7 @@ resource "aws_ecr_repository" "ecr" {
   name  = "bk-${var.repositories[count.index]}-service"
 
   encryption_configuration {
-    encryption_type  = "KMS"
+    encryption_type = "KMS"
   }
 
   image_scanning_configuration {

@@ -19,5 +19,5 @@ variable "manager" {
 variable "repositories" {
   description = "List names of ecr repositories"
   type        = list(string)
-  default     = []  
+  default     = []
 }
