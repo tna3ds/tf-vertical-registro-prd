@@ -51,3 +51,9 @@ variable "auth_capacity" {
   type        = list(string)
   default     = []
 }
+
+variable "auth_service_port" {
+  description = "Number port for target group auth service"
+  type        = number
+  default     = 0
+}

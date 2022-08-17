@@ -15,7 +15,14 @@ resource "aws_ecs_task_definition" "task_definition_auth_services" {
   {
     "name": "bk-${var.repositories[0]}-service",
     "image": "${data.aws_ecr_repository.ecr_repositories_data.*.repository_url[0]}:${var.tag_image_auth}",
-    "essential": true
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": ${var.auth_service_port},
+        "hostPort": ${var.auth_service_port},
+        "protocol": "tcp"
+      }
+    ]
   }
 ]
 TASK_DEFINITION
@@ -46,7 +53,14 @@ resource "aws_ecs_task_definition" "task_definition_catalogo_services" {
   {
     "name": "bk-${var.repositories[1]}-service",
     "image": "${data.aws_ecr_repository.ecr_repositories_data.*.repository_url[1]}:${var.tag_image_catalogo}",
-    "essential": true
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": ${var.auth_service_port},
+        "hostPort": ${var.auth_service_port},
+        "protocol": "tcp"
+      }
+    ]
   }
 ]
 TASK_DEFINITION
@@ -77,7 +91,14 @@ resource "aws_ecs_task_definition" "task_definition_persistence_services" {
   {
     "name": "bk-${var.repositories[2]}-service",
     "image": "${data.aws_ecr_repository.ecr_repositories_data.*.repository_url[2]}:${var.tag_image_persistence}",
-    "essential": true
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": ${var.auth_service_port},
+        "hostPort": ${var.auth_service_port},
+        "protocol": "tcp"
+      }
+    ]
   }
 ]
 TASK_DEFINITION
@@ -108,7 +129,14 @@ resource "aws_ecs_task_definition" "task_definition_registro_workflow_services" 
   {
     "name": "bk-${var.repositories[3]}-service",
     "image": "${data.aws_ecr_repository.ecr_repositories_data.*.repository_url[3]}:${var.tag_image_registro_workflow}",
-    "essential": true
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": ${var.auth_service_port},
+        "hostPort": ${var.auth_service_port},
+        "protocol": "tcp"
+      }
+    ]
   }
 ]
 TASK_DEFINITION
