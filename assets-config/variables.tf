@@ -147,3 +147,123 @@ variable "registro_workflow_health_check_path" {
   type        = string
   default     = ""
 }
+
+variable "auth_vCPU" {
+  description = "vCpu for taskdefinition auth service"
+  type        = number
+  default     = 0
+}
+
+variable "auth_ram" {
+  description = "ram for taskdefinition auth service"
+  type        = number
+  default     = 0
+}
+
+variable "catalogo_vCPU" {
+  description = "vCpu for taskdefinition catalogo service"
+  type        = number
+  default     = 0
+}
+
+variable "catalogo_ram" {
+  description = "ram for taskdefinition catalogo service"
+  type        = number
+  default     = 0
+}
+
+variable "persistence_vCPU" {
+  description = "vCpu for taskdefinition persistence service"
+  type        = number
+  default     = 0
+}
+
+variable "persistence_ram" {
+  description = "ram for taskdefinition persistence service"
+  type        = number
+  default     = 0
+}
+
+variable "registro_workflow_vCPU" {
+  description = "vCpu for taskdefinition registro-workflow service"
+  type        = number
+  default     = 0
+}
+
+variable "registro_workflow_ram" {
+  description = "ram for taskdefinition registro-workflow service"
+  type        = number
+  default     = 0
+}
+
+variable "auth_desired_task" {
+  description = "number of task for auth service"
+  type        = number
+  default     = 0
+}
+
+variable "catalogo_desired_task" {
+  description = "number of task for catalogo service"
+  type        = number
+  default     = 0
+}
+
+variable "persistence_desired_task" {
+  description = "number of task for persistence service"
+  type        = number
+  default     = 0
+}
+
+variable "registro_workflow_desired_task" {
+  description = "number of task for registro-workflow service"
+  type        = number
+  default     = 0
+}
+
+variable "auth_min_task" {
+  description = "number of min task for auth service"
+  type        = number
+  default     = 0
+}
+
+variable "auth_max_task" {
+  description = "number of max task for auth service"
+  type        = number
+  default     = 0
+}
+
+variable "catalogo_min_task" {
+  description = "number of min task for catalogo service"
+  type        = number
+  default     = 0
+}
+
+variable "catalogo_max_task" {
+  description = "number of max task for catalogo service"
+  type        = number
+  default     = 0
+}
+
+variable "persistence_min_task" {
+  description = "number of min task for persistence service"
+  type        = number
+  default     = 0
+}
+
+variable "persistence_max_task" {
+  description = "number of max task for persistence service"
+  type        = number
+  default     = 0
+}
+
+variable "registro_workflow_min_task" {
+  description = "number of min task for registro-workflow service"
+  type        = number
+  default     = 0
+}
+
+variable "registro_workflow_max_task" {
+  description = "number of max task for registro-workflow service"
+  type        = number
+  default     = 0
+}

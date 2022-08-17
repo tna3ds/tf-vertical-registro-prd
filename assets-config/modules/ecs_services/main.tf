@@ -1,5 +1,5 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# CREATE ECS/ASG+ AUTH SERVICES
+# CREATE ECS AUTH SERVICES
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #SERVICE
@@ -7,7 +7,7 @@ resource "aws_ecs_service" "ecs_auth_services" {
   name            = "bk-${var.repositories[0]}-service"
   cluster         = data.aws_ecs_cluster.ecs_cluster_data.id
   task_definition = var.task_definitions_auth_service_arn
-  desired_count   = 2
+  desired_count   = var.auth_desired_task
   launch_type     = "FARGATE"
 
   network_configuration {
@@ -28,7 +28,7 @@ resource "aws_ecs_service" "ecs_auth_services" {
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# CREATE ECS/ASG+ CATALOGO SERVICES
+# CREATE ECS CATALOGO SERVICES
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #SERVICE
@@ -36,7 +36,7 @@ resource "aws_ecs_service" "ecs_catalogo_services" {
   name            = "bk-${var.repositories[1]}-service"
   cluster         = data.aws_ecs_cluster.ecs_cluster_data.id
   task_definition = var.task_definitions_catalogo_service_arn
-  desired_count   = 2
+  desired_count   = var.catalogo_desired_task
   launch_type     = "FARGATE"
 
   network_configuration {
@@ -57,7 +57,7 @@ resource "aws_ecs_service" "ecs_catalogo_services" {
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# CREATE ECS/ASG+ PERSISTENCE SERVICES
+# CREATE ECS PERSISTENCE SERVICES
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #SERVICE
@@ -65,7 +65,7 @@ resource "aws_ecs_service" "ecs_persistence_services" {
   name            = "bk-${var.repositories[2]}-service"
   cluster         = data.aws_ecs_cluster.ecs_cluster_data.id
   task_definition = var.task_definitions_persistence_service_arn
-  desired_count   = 2
+  desired_count   = var.persistence_desired_task
   launch_type     = "FARGATE"
 
   network_configuration {
@@ -86,7 +86,7 @@ resource "aws_ecs_service" "ecs_persistence_services" {
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# CREATE ECS/ASG+ REGISTRO WORKFLOW SERVICES
+# CREATE ECS REGISTRO WORKFLOW SERVICES
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #SERVICE
@@ -94,7 +94,7 @@ resource "aws_ecs_service" "ecs_registro_workflow_services" {
   name            = "bk-${var.repositories[3]}-service"
   cluster         = data.aws_ecs_cluster.ecs_cluster_data.id
   task_definition = var.task_definitions_registro_workflow_service_arn
-  desired_count   = 2
+  desired_count   = var.registro_workflow_desired_task
   launch_type     = "FARGATE"
 
   network_configuration {

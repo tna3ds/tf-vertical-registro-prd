@@ -47,6 +47,14 @@ module "task_definitions" {
   tag_image_persistence       = var.tag_image_persistence
   tag_image_registro_workflow = var.tag_image_registro_workflow
   auth_service_port           = var.auth_service_port
+  auth_vCPU                   = var.auth_vCPU
+  auth_ram                    = var.auth_ram
+  catalogo_vCPU               = var.catalogo_vCPU
+  catalogo_ram                = var.catalogo_ram
+  persistence_vCPU            = var.persistence_vCPU
+  persistence_ram             = var.persistence_ram
+  registro_workflow_vCPU      = var.registro_workflow_vCPU
+  registro_workflow_ram       = var.registro_workflow_ram
 
   source = "./modules/task_definitions"
 }
@@ -73,8 +81,22 @@ module "target_listeners" {
 }
 
 module "cloud_watch" {
-  manager      = var.manager
-  repositories = var.repositories
+  environment                = var.environment
+  project                    = var.project
+  manager                    = var.manager
+  repositories               = var.repositories
+  ecs_auth_name              = module.ecs_services.ecs_auth_name
+  auth_up_arn                = module.ecs_asg.auth_up_arn
+  auth_down_arn              = module.ecs_asg.auth_down_arn
+  ecs_catalogo_name          = module.ecs_services.ecs_catalogo_name
+  catalogo_up_arn            = module.ecs_asg.catalogo_up_arn
+  catalogo_down_arn          = module.ecs_asg.catalogo_down_arn
+  ecs_persistence_name       = module.ecs_services.ecs_persistence_name
+  persistence_up_arn         = module.ecs_asg.persistence_up_arn
+  persistence_down_arn       = module.ecs_asg.persistence_down_arn
+  ecs_registro_workflow_name = module.ecs_services.ecs_registro_workflow_name
+  registro_workflow_up_arn   = module.ecs_asg.registro_workflow_up_arn
+  registro_workflow_down_arn = module.ecs_asg.registro_workflow_down_arn
 
   source = "./modules/cloud_watch"
 }
@@ -97,6 +119,31 @@ module "ecs_services" {
   registro_workflow_service_port                 = var.registro_workflow_service_port
   target_registro_workflow_service_arn           = module.target_listeners.target_registro_workflow_service_arn
   task_definitions_registro_workflow_service_arn = module.task_definitions.task_definitions_registro_workflow_service_arn
+  auth_desired_task                              = var.auth_desired_task
+  catalogo_desired_task                          = var.catalogo_desired_task
+  persistence_desired_task                       = var.persistence_desired_task
+  registro_workflow_desired_task                 = var.registro_workflow_desired_task
 
   source = "./modules/ecs_services"
+}
+
+module "ecs_asg" {
+  environment                = var.environment
+  project                    = var.project
+  manager                    = var.manager
+  repositories               = var.repositories
+  ecs_auth_name              = module.ecs_services.ecs_auth_name
+  auth_min_task              = var.auth_min_task
+  auth_max_task              = var.auth_max_task
+  ecs_catalogo_name          = module.ecs_services.ecs_catalogo_name
+  catalogo_min_task          = var.catalogo_min_task
+  catalogo_max_task          = var.catalogo_max_task
+  ecs_persistence_name       = module.ecs_services.ecs_persistence_name
+  persistence_min_task       = var.persistence_min_task
+  persistence_max_task       = var.persistence_max_task
+  ecs_registro_workflow_name = module.ecs_services.ecs_registro_workflow_name
+  registro_workflow_min_task = var.registro_workflow_min_task
+  registro_workflow_max_task = var.registro_workflow_max_task
+
+  source = "./modules/ecs_asg"
 }

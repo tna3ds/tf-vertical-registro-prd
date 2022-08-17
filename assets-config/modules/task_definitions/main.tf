@@ -6,8 +6,8 @@ resource "aws_ecs_task_definition" "task_definition_auth_services" {
   family                   = "bk-${var.repositories[0]}-service"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
-  cpu                      = 1024
-  memory                   = 2048
+  cpu                      = var.auth_vCPU
+  memory                   = var.auth_ram
   execution_role_arn       = data.aws_iam_role.execution_role_arn_data.arn
   task_role_arn            = data.aws_iam_role.task_role_arn_data.*.arn[0]
   container_definitions    = <<TASK_DEFINITION
@@ -44,8 +44,8 @@ resource "aws_ecs_task_definition" "task_definition_catalogo_services" {
   family                   = "bk-${var.repositories[1]}-service"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
-  cpu                      = 1024
-  memory                   = 2048
+  cpu                      = var.catalogo_vCPU
+  memory                   = var.catalogo_ram
   execution_role_arn       = data.aws_iam_role.execution_role_arn_data.arn
   task_role_arn            = data.aws_iam_role.task_role_arn_data.*.arn[1]
   container_definitions    = <<TASK_DEFINITION
@@ -82,8 +82,8 @@ resource "aws_ecs_task_definition" "task_definition_persistence_services" {
   family                   = "bk-${var.repositories[2]}-service"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
-  cpu                      = 1024
-  memory                   = 2048
+  cpu                      = var.persistence_vCPU
+  memory                   = var.persistence_ram
   execution_role_arn       = data.aws_iam_role.execution_role_arn_data.arn
   task_role_arn            = data.aws_iam_role.task_role_arn_data.*.arn[2]
   container_definitions    = <<TASK_DEFINITION
@@ -120,8 +120,8 @@ resource "aws_ecs_task_definition" "task_definition_registro_workflow_services" 
   family                   = "bk-${var.repositories[3]}-service"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
-  cpu                      = 1024
-  memory                   = 2048
+  cpu                      = var.registro_workflow_vCPU
+  memory                   = var.registro_workflow_ram
   execution_role_arn       = data.aws_iam_role.execution_role_arn_data.arn
   task_role_arn            = data.aws_iam_role.task_role_arn_data.*.arn[3]
   container_definitions    = <<TASK_DEFINITION

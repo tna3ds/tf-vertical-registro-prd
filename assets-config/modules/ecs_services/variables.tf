@@ -99,3 +99,27 @@ variable "task_definitions_registro_workflow_service_arn" {
   type        = string
   default     = ""
 }
+
+variable "auth_desired_task" {
+  description = "number of task for auth service"
+  type        = number
+  default     = 0
+}
+
+variable "catalogo_desired_task" {
+  description = "number of task for catalogo service"
+  type        = number
+  default     = 0
+}
+
+variable "persistence_desired_task" {
+  description = "number of task for persistence service"
+  type        = number
+  default     = 0
+}
+
+variable "registro_workflow_desired_task" {
+  description = "number of task for registro-workflow service"
+  type        = number
+  default     = 0
+}

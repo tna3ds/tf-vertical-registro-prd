@@ -57,3 +57,51 @@ variable "auth_service_port" {
   type        = number
   default     = 0
 }
+
+variable "auth_vCPU" {
+  description = "vCpu for taskdefinition auth service"
+  type        = number
+  default     = 0
+}
+
+variable "auth_ram" {
+  description = "ram for taskdefinition auth service"
+  type        = number
+  default     = 0
+}
+
+variable "catalogo_vCPU" {
+  description = "vCpu for taskdefinition catalogo service"
+  type        = number
+  default     = 0
+}
+
+variable "catalogo_ram" {
+  description = "ram for taskdefinition catalogo service"
+  type        = number
+  default     = 0
+}
+
+variable "persistence_vCPU" {
+  description = "vCpu for taskdefinition persistence service"
+  type        = number
+  default     = 0
+}
+
+variable "persistence_ram" {
+  description = "ram for taskdefinition persistence service"
+  type        = number
+  default     = 0
+}
+
+variable "registro_workflow_vCPU" {
+  description = "vCpu for taskdefinition registro-workflow service"
+  type        = number
+  default     = 0
+}
+
+variable "registro_workflow_ram" {
+  description = "ram for taskdefinition registro-workflow service"
+  type        = number
+  default     = 0
+}
